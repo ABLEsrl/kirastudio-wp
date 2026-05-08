@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Kira Studio 1.0.0\n"
+"Report-Msgid-Bugs-To: https://kirastudio.it\n"
+"POT-Creation-Date: 2026-04-28 08:58+0000\n"
+"PO-Revision-Date: 2026-04-28 08:58+0000\n"
+"Last-Translator: Able <info@a-ble.com>\n"
+"Language-Team: Able\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Cursor Codex\n"
+"X-Domain: kira-studio\n"
+
+#: includes/CarbonFields.php
+msgid "Kira Studio"
+msgstr ""
+
+#: includes/CarbonFields.php
+msgid "Token"
+msgstr ""
+
+#: includes/CarbonFields.php
+msgid "Kira Studio API token used by shortcode Vue app."
+msgstr ""

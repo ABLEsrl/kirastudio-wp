@@ -1,0 +1,33 @@
+{
+  "name": "kira-studio-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build:wp": "vite build --mode wp",
+    "build:drupal": "vite build --mode drupal",
+    "build:standalone": "vite build --mode standalone"
+  },
+  "dependencies": {
+    "@mdi/js": "^7.4.47",
+    "chart.js": "^4.5.1",
+    "markdown-it": "^14.1.1",
+    "pinia": "^3.0.4",
+    "pinia-plugin-persistedstate": "^4.7.1",
+    "tippy.js": "^6.3.7",
+    "vue": "^3.5.33",
+    "vue-i18n": "^11.4.0",
+    "vue-router": "^5.0.6",
+    "vue-tippy": "^6.7.1",
+    "vue3-dropzone": "^2.2.1",
+    "vuetify": "^4.0.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.6",
+    "sass": "^1.99.0",
+    "sharp": "^0.34.5",
+    "vite": "^8.0.10",
+    "vite-plugin-vuetify": "^2.1.3"
+  }
+}

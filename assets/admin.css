@@ -1,0 +1,260 @@
+#adminmenu .toplevel_page_kira-studio .wp-menu-image img {
+  width: 16px;
+  height: auto;
+}
+
+/* ── Page layout ───────────────────────────────────────────── */
+.ks-page {
+  max-width: 860px;
+  padding: 24px 0 48px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.ks-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.ks-header img {
+  height: 48px;
+  width: auto;
+}
+
+.ks-header-text h1 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.ks-header-text p {
+  margin: 4px 0 0;
+  color: #646970;
+  font-size: 13px;
+}
+
+/* ── Cards ─────────────────────────────────────────────────── */
+.ks-card {
+  background: #fff;
+  border: 1px solid #dcdcde;
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+}
+
+.ks-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1d2327;
+  margin: 0 0 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f0f0f1;
+}
+
+.ks-card-title .dashicons {
+  color: #2271b1;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Shortcode box ─────────────────────────────────────────── */
+.ks-shortcode-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  color: #1d2327;
+}
+
+.ks-shortcode-box code {
+  flex: 1;
+  background: none;
+  padding: 0;
+  font-size: 14px;
+  color: #2271b1;
+}
+
+.ks-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: #2271b1;
+  color: #fff !important;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.ks-copy-btn:hover {
+  background: #135e96;
+}
+
+.ks-copy-btn .dashicons {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+}
+
+.ks-copy-btn.copied {
+  background: #00a32a;
+}
+
+/* ── Usage table ───────────────────────────────────────────── */
+.ks-usage-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.ks-usage-table th {
+  text-align: left;
+  padding: 8px 12px;
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  font-weight: 600;
+  color: #1d2327;
+}
+
+.ks-usage-table td {
+  padding: 8px 12px;
+  border: 1px solid #dcdcde;
+  vertical-align: top;
+  color: #3c434a;
+}
+
+.ks-usage-table td code {
+  background: #f6f7f7;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  color: #2271b1;
+}
+
+/* ── Steps ─────────────────────────────────────────────────── */
+.ks-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: ks-step;
+}
+
+.ks-steps li {
+  counter-increment: ks-step;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f1;
+  font-size: 13px;
+  color: #3c434a;
+  line-height: 1.5;
+}
+
+.ks-steps li:last-child {
+  border-bottom: none;
+}
+
+.ks-steps li::before {
+  content: counter(ks-step);
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background: #2271b1;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+/* ── Settings form ─────────────────────────────────────────── */
+.ks-form-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ks-form-table tr + tr td,
+.ks-form-table tr + tr th {
+  padding-top: 16px;
+}
+
+.ks-form-table th {
+  width: 180px;
+  text-align: left;
+  vertical-align: top;
+  padding-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d2327;
+}
+
+.ks-form-table td {
+  font-size: 13px;
+}
+
+.ks-form-table .description {
+  color: #646970;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* ── Status badge ──────────────────────────────────────────── */
+.ks-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.ks-status.ok {
+  background: #edfaef;
+  color: #00a32a;
+}
+
+.ks-status.missing {
+  background: #fcf0f1;
+  color: #d63638;
+}
+
+.ks-status .dashicons {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Two-column grid ───────────────────────────────────────── */
+.ks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 700px) {
+  .ks-grid {
+    grid-template-columns: 1fr;
+  }
+}

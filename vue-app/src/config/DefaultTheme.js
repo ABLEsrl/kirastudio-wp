@@ -1,0 +1,22 @@
+export default {
+  colors: {
+    background: '#FAFAFA',
+    'background-2': '#F3F4F6',
+    primary: '#7C3AED',
+    secondary: '#7C3AED',
+    accent: '#14B8A6',
+    blue: '#00B1E8',
+    dark: '#1B1B3A',
+    error: '#EF4444',
+    info: '#14B8A6',
+    success: '#1dcca3',
+    warning: '#F59E0B',
+    menu: '#1B1B3A',
+    'menu-dark': '#111127',
+    'menu-text': '#FFFFFF',
+    border: '#E5E7EB',
+    text: '#1F2937',
+    white: '#FFFFFF',
+    grey: '#6B7280',
+  },
+};
