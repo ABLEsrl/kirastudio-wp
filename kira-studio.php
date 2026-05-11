@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Kira Studio
+ * Plugin Name: ablesrl Kira Studio
  * Plugin URI: https://kirastudio.it
  * Description: Integration plugin for Kira Studio.
  * Version: 1.0.0
@@ -36,17 +36,18 @@ if (! defined('ABSPATH')) {
 	exit;
 }
 
-define('KIRA_STUDIO_VERSION', '1.0.0');
-define('KIRA_STUDIO_FILE', __FILE__);
-define('KIRA_STUDIO_PATH', plugin_dir_path(__FILE__));
-define('KIRA_STUDIO_URL', plugin_dir_url(__FILE__));
+define('ABLEKIST_VERSION', '1.0.0');
+define('ABLEKIST_FILE', __FILE__);
+define('ABLEKIST_PATH', plugin_dir_path(__FILE__));
+define('ABLEKIST_URL', plugin_dir_url(__FILE__));
 
-require_once KIRA_STUDIO_PATH . 'traits/Singleton.php';
-require_once KIRA_STUDIO_PATH . 'includes/Plugin.php';
-require_once KIRA_STUDIO_PATH . 'includes/Assets.php';
-require_once KIRA_STUDIO_PATH . 'includes/Settings.php';
-require_once KIRA_STUDIO_PATH . 'includes/SessionStore.php';
-require_once KIRA_STUDIO_PATH . 'includes/Shortcode.php';
-require_once KIRA_STUDIO_PATH . 'includes/TokenUpdater.php';
+require_once ABLEKIST_PATH . 'traits/Singleton.php';
+require_once ABLEKIST_PATH . 'includes/Plugin.php';
+require_once ABLEKIST_PATH . 'includes/Assets.php';
+require_once ABLEKIST_PATH . 'includes/Settings.php';
+require_once ABLEKIST_PATH . 'includes/SessionStore.php';
+require_once ABLEKIST_PATH . 'includes/Shortcode.php';
+require_once ABLEKIST_PATH . 'includes/CacheCompat.php';
+require_once ABLEKIST_PATH . 'includes/TokenUpdater.php';
 
 \KiraStudio\Plugin::instance()->boot();

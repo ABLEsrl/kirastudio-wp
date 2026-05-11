@@ -18,7 +18,7 @@ final class Plugin
 
 	public function loadTextdomain(): void
 	{
-		load_plugin_textdomain('kira-studio', false, dirname(plugin_basename(KIRA_STUDIO_FILE)) . '/languages');
+		load_plugin_textdomain('kira-studio', false, dirname(plugin_basename(ABLEKIST_FILE)) . '/languages');
 	}
 
 	public function registerModules(): void

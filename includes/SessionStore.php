@@ -10,9 +10,9 @@ final class SessionStore
 {
 	use Singleton;
 
-	private const SESSION_KEY  = 'kira_studio_chat';
-	private const NONCE_ACTION = 'kira_studio_session';
-	private const AJAX_ACTION  = 'kira_studio_save_session';
+	private const SESSION_KEY  = 'ablekist_chat';
+	private const NONCE_ACTION = 'ablekist_session';
+	private const AJAX_ACTION  = 'ablekist_save_session';
 
 	private const DEFAULTS = [
 		'conversation_id' => '',
@@ -25,12 +25,11 @@ final class SessionStore
 
 	public function register(): void
 	{
-		$this->start();
 		add_action('wp_ajax_' . self::AJAX_ACTION,        [$this, 'ajaxSave']);
 		add_action('wp_ajax_nopriv_' . self::AJAX_ACTION, [$this, 'ajaxSave']);
 	}
 
-	public function start(): void
+	private static function resumeSession(): void
 	{
 		if (headers_sent() || session_status() === PHP_SESSION_ACTIVE) {
 			return;
@@ -41,6 +40,16 @@ final class SessionStore
 
 	public static function get(): array
 	{
+		// Only resume an existing session — never create one just for a read.
+		// Anonymous visitors with no session cookie remain fully cacheable.
+		if (session_status() !== PHP_SESSION_ACTIVE) {
+			if (empty($_COOKIE[session_name()])) {
+				return self::DEFAULTS;
+			}
+
+			self::resumeSession();
+		}
+
 		if (session_status() !== PHP_SESSION_ACTIVE) {
 			return self::DEFAULTS;
 		}
@@ -112,6 +121,8 @@ final class SessionStore
 		) {
 			wp_send_json_error('invalid_nonce', 403);
 		}
+
+		self::resumeSession();
 
 		$raw     = isset($_POST['data']) ? wp_unslash($_POST['data']) : '{}';
 		$payload = json_decode((string) $raw, true);

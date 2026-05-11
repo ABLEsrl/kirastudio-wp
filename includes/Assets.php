@@ -37,9 +37,9 @@ final class Assets
 
 		wp_register_script(
 			self::HANDLE,
-			KIRA_STUDIO_URL . 'assets/dist/' . ltrim($scriptFile, '/'),
+			ABLEKIST_URL . 'assets/dist/' . ltrim($scriptFile, '/'),
 			[],
-			KIRA_STUDIO_VERSION,
+			ABLEKIST_VERSION,
 			true
 		);
 
@@ -82,9 +82,9 @@ final class Assets
 				$this->manifestStyleHandles[] = $styleHandle;
 				wp_register_style(
 					$styleHandle,
-					KIRA_STUDIO_URL . 'assets/dist/' . ltrim((string) $cssPath, '/'),
+					ABLEKIST_URL . 'assets/dist/' . ltrim((string) $cssPath, '/'),
 					[],
-					KIRA_STUDIO_VERSION
+					ABLEKIST_VERSION
 				);
 			}
 		}
@@ -96,7 +96,7 @@ final class Assets
 
 	private function getManifest(): array
 	{
-		$manifestPath = KIRA_STUDIO_PATH . 'assets/dist/.vite/manifest.json';
+		$manifestPath = ABLEKIST_PATH . 'assets/dist/.vite/manifest.json';
 
 		if (! file_exists($manifestPath)) {
 			return [];

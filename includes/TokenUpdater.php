@@ -10,24 +10,23 @@ final class TokenUpdater
 {
 	use Singleton;
 
-	const ROUTE_NAMESPACE = 'kira-studio/v1';
+	const ROUTE_NAMESPACE = 'ablekist/v1';
 	const ROUTE_PATH      = '/update-token';
 	const ALLOWED_HOST    = '';
 
 	// RS256 public key from kirastudio.it.
-	const PUBLIC_KEY = <<<EOT
------BEGIN PUBLIC KEY-----
-MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAvDxwa2QXh8RfOYLOdmmx
-oAW4nzVIYMw7NSeorGjJiPPccYu1L1bm9uu8azTCzhw8BC9xAuCi6Y+E15sFEqMM
-/iGkOdQE7pc3rK9GM/Wa0YaN144NUSr73+NrO9LK4qvUq2MhPHYOceSlZsQoSFQK
-TCjG0eN8N5rd0O3NU5+mv2eQYryG324n0HvfeFiNw5Z21GbRO2fPRdtVkny9uxaG
-E978DaD7jqYXif63WtjOALbJ3ejj3pYW4/lbmwmJj4aZ9GJxp7jlnAxy0V8nWTu1
-dLpljD7n2IiT+lMwOF5n6xTmmmBYgXrngunB3zInQ/yGk1ekODre8VDpYavUpqZx
-QjAfmMncVkiP53niZ2YaW50MbN9vrTeW7Mjhs22AP+PItNGNc90/D6RwRhZgr4pX
-Mo3RZ7OyZe5sBc/Gc2HWLAGXub8ose4lTazuoMNa57etMKklXuW/VDPP3SiNDFUs
-OYIC/lh04A1qmHpJCI27WFhl6+6bKwYF8+yW4+pwhvsHAgMBAAE=
------END PUBLIC KEY-----
-EOT;
+	const PUBLIC_KEY =
+		"-----BEGIN PUBLIC KEY-----\n" .
+		"MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAvDxwa2QXh8RfOYLOdmmx\n" .
+		"oAW4nzVIYMw7NSeorGjJiPPccYu1L1bm9uu8azTCzhw8BC9xAuCi6Y+E15sFEqMM\n" .
+		"/iGkOdQE7pc3rK9GM/Wa0YaN144NUSr73+NrO9LK4qvUq2MhPHYOceSlZsQoSFQK\n" .
+		"TCjG0eN8N5rd0O3NU5+mv2eQYryG324n0HvfeFiNw5Z21GbRO2fPRdtVkny9uxaG\n" .
+		"E978DaD7jqYXif63WtjOALbJ3ejj3pYW4/lbmwmJj4aZ9GJxp7jlnAxy0V8nWTu1\n" .
+		"dLpljD7n2IiT+lMwOF5n6xTmmmBYgXrngunB3zInQ/yGk1ekODre8VDpYavUpqZx\n" .
+		"QjAfmMncVkiP53niZ2YaW50MbN9vrTeW7Mjhs22AP+PItNGNc90/D6RwRhZgr4pX\n" .
+		"Mo3RZ7OyZe5sBc/Gc2HWLAGXub8ose4lTazuoMNa57etMKklXuW/VDPP3SiNDFUs\n" .
+		"OYIC/lh04A1qmHpJCI27WFhl6+6bKwYF8+yW4+pwhvsHAgMBAAE=\n" .
+		"-----END PUBLIC KEY-----";
 
 	public function register(): void
 	{

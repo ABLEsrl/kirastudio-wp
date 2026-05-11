@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
     ? '../drupal/kira_studio/assets/dist'
     : mode === 'standalone'
       ? '../standalone/dist'
-      : '../wp/kira_studio/assets/dist';
+      : '../wp/ablesrl-kirastudio/assets/dist';
 
   return {
     plugins: [

@@ -43,7 +43,7 @@ final class Shortcode
 			'conversationId' => $session['conversation_id'],
 			'chatOpen'       => $session['chat_open'],
 			'ajaxUrl'        => admin_url('admin-ajax.php'),
-			'nonce'          => wp_create_nonce('kira_studio_session'),
+			'nonce'          => wp_create_nonce('ablekist_session'),
 			'sessionId'      => $sessionId,
 			'panelTop'       => $session['panel_top'],
 			'panelLeft'      => $session['panel_left'],

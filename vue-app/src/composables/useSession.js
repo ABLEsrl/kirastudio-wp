@@ -26,7 +26,7 @@ export const useSession = () => {
     } else {
       if (! appStore.nonce) return;
       const body = new FormData();
-      body.append('action', 'kira_studio_save_session');
+      body.append('action', 'ablekist_save_session');
       body.append('nonce', appStore.nonce);
       body.append('data', JSON.stringify(data));
       fetch(appStore.ajaxUrl, { method: 'POST', body }).catch(() => {});

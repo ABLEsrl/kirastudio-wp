@@ -1,4 +1,4 @@
-=== Kira Studio ===
+=== ablesrl Kira Studio ===
 Contributors: able
 Tags: ai, chatbot, assistant, chat, support
 Requires at least: 6.0
@@ -58,6 +58,18 @@ All modern browsers (Chrome, Firefox, Safari, Edge). Internet Explorer is not su
 
 = 1.0.0 =
 * Initial release.
+
+== Source Code ==
+
+This plugin is built with Vue 3 (Vite + Vuetify). The full human-readable source — including the Vue application and all build tooling — is publicly available at:
+
+https://github.com/ablesrl/kirastudio-wp
+
+The `vue-app/` directory in that repository contains the complete, uncompiled Vue 3 source. To rebuild the assets yourself:
+
+1. `cd vue-app`
+2. `npm install`
+3. `npm run build:wp` — outputs to `assets/dist/`
 
 == Upgrade Notice ==
 

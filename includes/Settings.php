@@ -10,9 +10,9 @@ final class Settings
 {
 	use Singleton;
 
-	const TOKEN_KEY              = 'kira_studio_token';
-	const TITLE_KEY              = 'kira_studio_title';
-	const SHOW_LOGGED_IN_ONLY_KEY = 'kira_studio_show_logged_in_only';
+	const TOKEN_KEY              = 'ablekist_token';
+	const TITLE_KEY              = 'ablekist_title';
+	const SHOW_LOGGED_IN_ONLY_KEY = 'ablekist_show_logged_in_only';
 
 	public function register(): void
 	{
@@ -20,7 +20,7 @@ final class Settings
 		add_action('admin_enqueue_scripts', [$this, 'enqueueAdminStyles']);
 		add_action('admin_init', [$this, 'registerSettings']);
 		add_filter(
-			'plugin_action_links_' . plugin_basename(KIRA_STUDIO_FILE),
+			'plugin_action_links_' . plugin_basename(ABLEKIST_FILE),
 			[$this, 'addSettingsLink']
 		);
 	}
@@ -33,7 +33,7 @@ final class Settings
 			'manage_options',
 			'kira-studio',
 			[$this, 'renderPage'],
-			KIRA_STUDIO_URL . 'logo.svg',
+			ABLEKIST_URL . 'logo.svg',
 			30
 		);
 	}
@@ -42,25 +42,68 @@ final class Settings
 	{
 		wp_enqueue_style(
 			'kira-studio-admin',
-			KIRA_STUDIO_URL . 'assets/admin.css',
+			ABLEKIST_URL . 'assets/admin.css',
 			[],
-			KIRA_STUDIO_VERSION
+			ABLEKIST_VERSION
 		);
+
+		$copied = esc_js(__('Copied!', 'kira-studio'));
+		wp_register_script('kira-studio-admin', false, [], ABLEKIST_VERSION, true);
+		wp_enqueue_script('kira-studio-admin');
+		wp_add_inline_script('kira-studio-admin', $this->buildCopyScript($copied));
+	}
+
+	private function buildCopyScript(string $copiedLabel): string
+	{
+		$s  = "const ksCopyText = (text) => {\n";
+		$s .= "\tif (navigator.clipboard && navigator.clipboard.writeText) {\n";
+		$s .= "\t\treturn navigator.clipboard.writeText(text);\n";
+		$s .= "\t}\n";
+		$s .= "\tconst ta = document.createElement('textarea');\n";
+		$s .= "\tta.value = text;\n";
+		$s .= "\tta.style.cssText = 'position:fixed;opacity:0;pointer-events:none;';\n";
+		$s .= "\tdocument.body.appendChild(ta);\n";
+		$s .= "\tta.focus();\n";
+		$s .= "\tta.select();\n";
+		$s .= "\tdocument.execCommand('copy');\n";
+		$s .= "\tdocument.body.removeChild(ta);\n";
+		$s .= "\treturn Promise.resolve();\n";
+		$s .= "};\n\n";
+		$s .= "document.querySelectorAll('.ks-copy-btn').forEach((btn) => {\n";
+		$s .= "\tbtn.addEventListener('click', () => {\n";
+		$s .= "\t\tconst target = document.getElementById(btn.dataset.target);\n";
+		$s .= "\t\tif (! target) return;\n";
+		$s .= "\t\tksCopyText(target.textContent.trim()).then(() => {\n";
+		$s .= "\t\t\tconst label = btn.querySelector(':not(.dashicons)') ?? btn;\n";
+		$s .= "\t\t\tconst icon  = btn.querySelector('.dashicons');\n";
+		$s .= "\t\t\tconst orig  = label.textContent;\n";
+		$s .= "\t\t\tbtn.classList.add('copied');\n";
+		$s .= "\t\t\tif (icon) icon.className = 'dashicons dashicons-yes';\n";
+		$s .= "\t\t\tlabel.textContent = '" . $copiedLabel . "';\n";
+		$s .= "\t\t\tsetTimeout(() => {\n";
+		$s .= "\t\t\t\tbtn.classList.remove('copied');\n";
+		$s .= "\t\t\t\tif (icon) icon.className = 'dashicons dashicons-clipboard';\n";
+		$s .= "\t\t\t\tlabel.textContent = orig;\n";
+		$s .= "\t\t\t}, 2000);\n";
+		$s .= "\t\t});\n";
+		$s .= "\t});\n";
+		$s .= "});";
+		return $s;
 	}
 
 	public function registerSettings(): void
 	{
-		register_setting('kira_studio_settings', self::TOKEN_KEY, [
+		register_setting('ablekist_settings', self::TOKEN_KEY, [
 			'type'              => 'string',
 			'sanitize_callback' => 'sanitize_text_field',
 			'default'           => '',
 		]);
-		register_setting('kira_studio_settings', self::TITLE_KEY, [
+		register_setting('ablekist_settings', self::TITLE_KEY, [
 			'type'              => 'string',
 			'sanitize_callback' => 'sanitize_text_field',
 			'default'           => 'Kira Studio',
 		]);
-		register_setting('kira_studio_settings', self::SHOW_LOGGED_IN_ONLY_KEY, [
+		register_setting('ablekist_settings', self::SHOW_LOGGED_IN_ONLY_KEY, [
 			'type'              => 'integer',
 			'sanitize_callback' => 'absint',
 			'default'           => 0,
@@ -83,7 +126,7 @@ final class Settings
 			<!-- Header -->
 			<div class="ks-header">
 				<img
-					src="<?php echo esc_url(KIRA_STUDIO_URL . 'logo.svg'); ?>"
+					src="<?php echo esc_url(ABLEKIST_URL . 'logo.svg'); ?>"
 					alt="Kira Studio"
 				/>
 				<div class="ks-header-text">
@@ -173,7 +216,7 @@ final class Settings
 						</tr>
 						<tr>
 							<th><?php esc_html_e('Version', 'kira-studio'); ?></th>
-							<td><?php echo esc_html(KIRA_STUDIO_VERSION); ?></td>
+							<td><?php echo esc_html(ABLEKIST_VERSION); ?></td>
 						</tr>
 						<tr>
 							<th><?php esc_html_e('Documentation', 'kira-studio'); ?></th>
@@ -221,18 +264,18 @@ final class Settings
 				</h2>
 
 				<form method="post" action="options.php">
-					<?php settings_fields('kira_studio_settings'); ?>
+					<?php settings_fields('ablekist_settings'); ?>
 					<table class="ks-form-table">
 						<tr>
 							<th>
-								<label for="kira_studio_token">
+								<label for="ablekist_token">
 									<?php esc_html_e('API Key', 'kira-studio'); ?>
 								</label>
 							</th>
 							<td>
 								<input
 									type="text"
-									id="kira_studio_token"
+									id="ablekist_token"
 									name="<?php echo esc_attr(self::TOKEN_KEY); ?>"
 									value="<?php echo esc_attr(get_option(self::TOKEN_KEY, '')); ?>"
 									class="regular-text"
@@ -244,14 +287,14 @@ final class Settings
 						</tr>
 						<tr>
 							<th>
-								<label for="kira_studio_title">
+								<label for="ablekist_title">
 									<?php esc_html_e('Chat Title', 'kira-studio'); ?>
 								</label>
 							</th>
 							<td>
 								<input
 									type="text"
-									id="kira_studio_title"
+									id="ablekist_title"
 									name="<?php echo esc_attr(self::TITLE_KEY); ?>"
 									value="<?php echo esc_attr(get_option(self::TITLE_KEY, 'Kira Studio')); ?>"
 									class="regular-text"
@@ -292,48 +335,12 @@ final class Settings
 
 		</div>
 
-		<script>
-		const ksCopyText = (text) => {
-			if (navigator.clipboard && navigator.clipboard.writeText) {
-				return navigator.clipboard.writeText(text);
-			}
-			const ta = document.createElement('textarea');
-			ta.value = text;
-			ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none;';
-			document.body.appendChild(ta);
-			ta.focus();
-			ta.select();
-			document.execCommand('copy');
-			document.body.removeChild(ta);
-			return Promise.resolve();
-		};
-
-		document.querySelectorAll('.ks-copy-btn').forEach((btn) => {
-			btn.addEventListener('click', () => {
-				const target = document.getElementById(btn.dataset.target);
-				if (! target) return;
-				ksCopyText(target.textContent.trim()).then(() => {
-					const label = btn.querySelector(':not(.dashicons)') ?? btn;
-					const icon  = btn.querySelector('.dashicons');
-					const orig  = label.textContent;
-					btn.classList.add('copied');
-					if (icon) icon.className = 'dashicons dashicons-yes';
-					label.textContent = '<?php echo esc_js(__('Copied!', 'kira-studio')); ?>';
-					setTimeout(() => {
-						btn.classList.remove('copied');
-						if (icon) icon.className = 'dashicons dashicons-clipboard';
-						label.textContent = orig;
-					}, 2000);
-				});
-			});
-		});
-		</script>
 		<?php
 	}
 
 	public function addSettingsLink(array $links): array
 	{
-		$url = admin_url('admin.php?page=kira-studio');
+		$url = admin_url('admin.php?page=ablesrl-kirastudio');
 		array_unshift($links, sprintf(
 			'<a href="%s">%s</a>',
 			esc_url($url),
