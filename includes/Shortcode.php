@@ -23,6 +23,11 @@ final class Shortcode
 			return '';
 		}
 
+		// Nonce is user/time-specific — tell page caches not to store this page.
+		if (! defined('DONOTCACHEPAGE')) {
+			define('DONOTCACHEPAGE', true);
+		}
+
 		$attributes = shortcode_atts([
 			'class' => '',
 		], $atts, self::SHORTCODE);
@@ -43,7 +48,6 @@ final class Shortcode
 			'conversationId' => $session['conversation_id'],
 			'chatOpen'       => $session['chat_open'],
 			'ajaxUrl'        => admin_url('admin-ajax.php'),
-			'nonce'          => wp_create_nonce('ablekist_session'),
 			'sessionId'      => $sessionId,
 			'panelTop'       => $session['panel_top'],
 			'panelLeft'      => $session['panel_left'],

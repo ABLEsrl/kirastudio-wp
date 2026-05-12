@@ -13,7 +13,6 @@ export const useAppStore = defineStore(
       conversationId: '',
       chatOpen: false,
       ajaxUrl: '',
-      nonce: '',
       sessionId: '',
       loggedUserId: 0,
       panelTop: 0,
@@ -32,7 +31,6 @@ export const useAppStore = defineStore(
         this.conversationId = payload?.conversationId || '';
         this.chatOpen = payload?.chatOpen === true;
         this.ajaxUrl = payload?.ajaxUrl || '';
-        this.nonce = payload?.nonce || '';
         this.sessionId = payload?.sessionId || '';
         this.loggedUserId = payload?.loggedUserId || 0;
         this.panelTop = payload?.panelTop || 0;

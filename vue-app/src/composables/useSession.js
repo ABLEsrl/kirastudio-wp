@@ -8,26 +8,15 @@ export const useSession = () => {
   const persistSession = (data) => {
     if (! appStore.ajaxUrl) return;
 
-    if (platform === 'drupal') {
-      fetch(appStore.ajaxUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': appStore.nonce,
-        },
-        body: JSON.stringify(data),
-      }).catch(() => {});
-    } else if (platform === 'standalone') {
+    if (platform === 'drupal' || platform === 'standalone') {
       fetch(appStore.ajaxUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       }).catch(() => {});
     } else {
-      if (! appStore.nonce) return;
       const body = new FormData();
       body.append('action', 'ablekist_save_session');
-      body.append('nonce', appStore.nonce);
       body.append('data', JSON.stringify(data));
       fetch(appStore.ajaxUrl, { method: 'POST', body }).catch(() => {});
     }

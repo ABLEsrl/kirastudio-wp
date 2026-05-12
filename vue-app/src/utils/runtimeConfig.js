@@ -61,7 +61,6 @@ export const getRuntimeConfig = () => {
     conversationId: rawConfig.conversationId || '',
     chatOpen:       !!rawConfig.chatOpen,
     ajaxUrl:        rawConfig.ajaxUrl || '',
-    nonce:          rawConfig.nonce || '',
     sessionId:      rawConfig.sessionId || '',
     loggedUserId:   rawConfig.loggedUserId || 0,
     panelTop:       rawConfig.panelTop    || 0,

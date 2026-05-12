@@ -10,9 +10,8 @@ final class SessionStore
 {
 	use Singleton;
 
-	private const SESSION_KEY  = 'ablekist_chat';
-	private const NONCE_ACTION = 'ablekist_session';
-	private const AJAX_ACTION  = 'ablekist_save_session';
+	private const SESSION_KEY = 'ablekist_chat';
+	private const AJAX_ACTION = 'ablekist_save_session';
 
 	private const DEFAULTS = [
 		'conversation_id' => '',
@@ -78,6 +77,11 @@ final class SessionStore
 		];
 	}
 
+	private static function clampInt(mixed $value, int $min, int $max): int
+	{
+		return max($min, min($max, (int) $value));
+	}
+
 	public static function set(array $data): void
 	{
 		if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -88,22 +92,22 @@ final class SessionStore
 
 		$clean = [
 			'conversation_id' => array_key_exists('conversation_id', $data)
-				? sanitize_text_field((string) $data['conversation_id'])
+				? substr(sanitize_text_field((string) $data['conversation_id']), 0, 200)
 				: $current['conversation_id'],
 			'chat_open'       => array_key_exists('chat_open', $data)
 				? (bool) $data['chat_open']
 				: $current['chat_open'],
 			'panel_top'       => array_key_exists('panel_top', $data)
-				? (int) $data['panel_top']
+				? self::clampInt($data['panel_top'], 0, 16000)
 				: $current['panel_top'],
 			'panel_left'      => array_key_exists('panel_left', $data)
-				? (int) $data['panel_left']
+				? self::clampInt($data['panel_left'], 0, 16000)
 				: $current['panel_left'],
 			'panel_width'     => array_key_exists('panel_width', $data)
-				? (int) $data['panel_width']
+				? self::clampInt($data['panel_width'], 0, 8000)
 				: $current['panel_width'],
 			'panel_height'    => array_key_exists('panel_height', $data)
-				? (int) $data['panel_height']
+				? self::clampInt($data['panel_height'], 0, 8000)
 				: $current['panel_height'],
 		];
 
@@ -112,16 +116,6 @@ final class SessionStore
 
 	public function ajaxSave(): void
 	{
-		if (
-			! isset($_POST['nonce']) ||
-			! wp_verify_nonce(
-				sanitize_text_field(wp_unslash($_POST['nonce'])),
-				self::NONCE_ACTION
-			)
-		) {
-			wp_send_json_error('invalid_nonce', 403);
-		}
-
 		self::resumeSession();
 
 		$raw     = isset($_POST['data']) ? wp_unslash($_POST['data']) : '{}';
