@@ -10,7 +10,7 @@ final class TokenUpdater
 {
 	use Singleton;
 
-	const ROUTE_NAMESPACE = 'ablekist/v1';
+	const ROUTE_NAMESPACE = 'kira-studio/v1';
 	const ROUTE_PATH      = '/update-token';
 	const ALLOWED_HOST    = '';
 
