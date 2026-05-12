@@ -340,7 +340,7 @@ final class Settings
 
 	public function addSettingsLink(array $links): array
 	{
-		$url = admin_url('admin.php?page=ablesrl-kirastudio');
+		$url = admin_url('admin.php?page=kira-studio');
 		array_unshift($links, sprintf(
 			'<a href="%s">%s</a>',
 			esc_url($url),

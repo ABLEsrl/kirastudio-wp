@@ -77,7 +77,7 @@ final class SessionStore
 		];
 	}
 
-	private static function clampInt(mixed $value, int $min, int $max): int
+	private static function clampInt($value, int $min, int $max): int
 	{
 		return max($min, min($max, (int) $value));
 	}
