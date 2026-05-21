@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 declare(strict_types=1);
 
 namespace KiraStudio;
@@ -113,7 +115,7 @@ final class TokenUpdater
 
 	private function hostIsAllowed(string $url): bool
 	{
-		$host = parse_url($url, PHP_URL_HOST);
+		$host = wp_parse_url($url, PHP_URL_HOST);
 
 		if (! $host) {
 			return false;

@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 declare(strict_types=1);
 
 namespace KiraStudio;
@@ -12,13 +14,7 @@ final class Plugin
 
 	public function boot(): void
 	{
-		add_action('plugins_loaded', [$this, 'loadTextdomain']);
 		add_action('init', [$this, 'registerModules']);
-	}
-
-	public function loadTextdomain(): void
-	{
-		load_plugin_textdomain('kira-studio', false, dirname(plugin_basename(ABLEKIST_FILE)) . '/languages');
 	}
 
 	public function registerModules(): void

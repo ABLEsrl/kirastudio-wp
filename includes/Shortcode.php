@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 declare(strict_types=1);
 
 namespace KiraStudio;
@@ -25,7 +27,7 @@ final class Shortcode
 
 		// Nonce is user/time-specific — tell page caches not to store this page.
 		if (! defined('DONOTCACHEPAGE')) {
-			define('DONOTCACHEPAGE', true);
+			define('DONOTCACHEPAGE', true); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- standard WP caching constant expected by caching plugins
 		}
 
 		$attributes = shortcode_atts([
