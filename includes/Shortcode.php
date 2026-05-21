@@ -10,7 +10,7 @@ final class Shortcode
 {
 	use Singleton;
 
-	private const SHORTCODE = 'kira_studio';
+	private const SHORTCODE = 'ablekist';
 
 	public function register(): void
 	{

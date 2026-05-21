@@ -118,8 +118,8 @@ final class Settings
 
 		$token     = self::getToken();
 		$hasToken  = $token !== '';
-		$shortcode = '[kira_studio]';
-		$shortcodeWithClass = '[kira_studio class="my-chat"]';
+		$shortcode = '[ablekist]';
+		$shortcodeWithClass = '[ablekist class="my-chat"]';
 		?>
 		<div class="wrap ks-page">
 
@@ -247,7 +247,7 @@ final class Settings
 						printf(
 							/* translators: %s: shortcode */
 							esc_html__('Add a Shortcode block and paste %s inside it.', 'kira-studio'),
-							'<code>[kira_studio]</code>'
+							'<code>[ablekist]</code>'
 						);
 						?>
 					</li>

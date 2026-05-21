@@ -33,11 +33,6 @@ final class CacheCompat
 			rocket_clean_domain();
 		}
 
-		// Cache Enabler
-		if (class_exists('Cache_Enabler')) {
-			do_action('cache_enabler_clear_site_cache');
-		}
-
 		// Breeze (Cloudways)
 		if (class_exists('Breeze_PurgeCache') || defined('BREEZE_VERSION')) {
 			do_action('breeze_clear_all_cache');
