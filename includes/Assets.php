@@ -1,8 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
-
 namespace KiraStudio;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 use KiraStudio\Traits\Singleton;
 
