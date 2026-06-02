@@ -1,5 +1,5 @@
 === ablesrl Kira Studio ===
-Contributors: able
+Contributors: ablesrl
 Tags: ai, chatbot, assistant, chat, support
 Requires at least: 6.0
 Tested up to: 7.0
